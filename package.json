@@ -1,0 +1,37 @@
+{
+  "name": "LearnRedux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "@types/jest": "^25.2.3",
+    "@types/node": "^14.0.9",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
+    "typescript": "^3.9.3"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/babel-node ./src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/demirtas-dev/LearningRedux.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/demirtas-dev/LearningRedux/issues"
+  },
+  "homepage": "https://github.com/demirtas-dev/LearningRedux#readme",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-scripts-ts": "^3.1.0",
+    "redux": "^4.0.5"
+  }
+}
