@@ -2,20 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = require("./constants");
 const reducers_1 = require("./store/reducers");
-const state = null;
+const state = [
+    "User not authorized",
+    "Server feed not found"
+];
 const action = {
-    type: constants_1.ADD_DAY,
-    payload: {
-        resort: "Sweet Haven",
-        date: "2017/11/1",
-        powder: false,
-        backcountry: false
-    }
+    type: constants_1.default.CLEAR_ERROR,
+    payload: 0
 };
-const nextState = reducers_1.skiDay(state, action);
+const nextState = reducers_1.default.errors(state, action);
 console.log(`
-    initial goal: ${state}
+    initial goal: ${JSON.stringify(state)}
     action: ${JSON.stringify(action)}
     new goal: ${JSON.stringify(nextState)}
 `);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDJDQUFzQztBQUd0QywrQ0FBMEM7QUFFMUMsTUFBTSxLQUFLLEdBQVksSUFBSSxDQUFDO0FBRTVCLE1BQU0sTUFBTSxHQUFrQjtJQUMxQixJQUFJLEVBQUUsbUJBQU87SUFDYixPQUFPLEVBQUU7UUFDTCxNQUFNLEVBQUUsYUFBYTtRQUNyQixJQUFJLEVBQUUsV0FBVztRQUNqQixNQUFNLEVBQUUsS0FBSztRQUNiLFdBQVcsRUFBRSxLQUFLO0tBQ3JCO0NBQ0osQ0FBQTtBQUVELE1BQU0sU0FBUyxHQUFZLGlCQUFNLENBQUMsS0FBSyxFQUFDLE1BQU0sQ0FBQyxDQUFBO0FBRS9DLE9BQU8sQ0FBQyxHQUFHLENBQUM7b0JBQ1MsS0FBTTtjQUNaLElBQUksQ0FBQyxTQUFTLENBQUMsTUFBTSxDQUFFO2dCQUNyQixJQUFJLENBQUMsU0FBUyxDQUFDLFNBQVMsQ0FBRTtDQUMxQyxDQUFDLENBQUEifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUVBLDJDQUE0QjtBQUM1QiwrQ0FBaUM7QUFFakMsTUFBTSxLQUFLLEdBQWM7SUFDckIscUJBQXFCO0lBQ3JCLHVCQUF1QjtDQUMxQixDQUFBO0FBRUQsTUFBTSxNQUFNLEdBQWM7SUFDdEIsSUFBSSxFQUFFLG1CQUFDLENBQUMsV0FBVztJQUNuQixPQUFPLEVBQUUsQ0FBQztDQUNiLENBQUE7QUFFRCxNQUFNLFNBQVMsR0FBYyxrQkFBQyxDQUFDLE1BQU0sQ0FBQyxLQUFLLEVBQUMsTUFBTSxDQUFDLENBQUE7QUFFbkQsT0FBTyxDQUFDLEdBQUcsQ0FBQztvQkFDUyxJQUFJLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBRTtjQUM1QixJQUFJLENBQUMsU0FBUyxDQUFDLE1BQU0sQ0FBRTtnQkFDckIsSUFBSSxDQUFDLFNBQVMsQ0FBQyxTQUFTLENBQUU7Q0FDMUMsQ0FBQyxDQUFBIn0=
