@@ -1,24 +1,32 @@
-﻿import C from '../constants';
-import S from '../types/state';
-import A from "../types/action";
+﻿import {AllSkiDays, ErrorList, Goal, SkiDay} from "../types/state";
+import {ErrorListAction, GoalAction, SkiDayAction} from "../types/action";
+import {ADD_DAY, ADD_ERROR, CLEAR_ERROR, REMOVE_DAY, SET_GOAL} from "../constants";
 
-module Reducers {
-    export const goal = (state : S.Goal = { days: 10 }, action : A.Goal) : S.Goal =>
-        action.type === C.SET_GOAL ? action.payload : state
+export const goal = (state : Goal = { days: 10 }, action : GoalAction) : Goal =>
+    action.type === SET_GOAL ? action.payload : state
 
-    export const skiDay = (state : S.SkiDay = null, action : A.SkiDay) : S.SkiDay =>
-        action.type === C.ADD_DAY ? action.payload : state
+export const skiDay = (state : SkiDay = null, action : SkiDayAction) : SkiDay =>
+    action.type === ADD_DAY ? action.payload : state
 
-    export const errors = (state : S.Errors = [], action : A.Errors) : S.Errors => {
-        switch(action.type) {
-            case C.ADD_ERROR:
-                return [ ...state, action.payload ]
-            case C.CLEAR_ERROR:
-                return state.filter((message, i) => i !== action.payload)
-            default:
-                return state
-        }
+export const errorList = (state : ErrorList = [], action : ErrorListAction) : ErrorList => {
+    switch(action.type) {
+        case ADD_ERROR:
+            return [ ...state, action.payload ]
+        case CLEAR_ERROR:
+            return state.filter((message, i) => i !== action.payload)
+        default:
+            return state
     }
 }
 
-export default Reducers
+export const allSkiDays = (state : AllSkiDays = [], action : SkiDayAction) : AllSkiDays => {
+    switch (action.type) {
+        case ADD_DAY:
+            const dayBookedAlready = state.some(skiDay => skiDay.date === action.payload.date)
+            return dayBookedAlready ? state : [ ...state, skiDay(null, action) ]
+        case REMOVE_DAY:
+            return state.filter(skiDay => skiDay.date !== action.payload)
+        default:
+            return state
+    }
+}

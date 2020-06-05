@@ -1,26 +1,12 @@
-﻿import S from '../types/state'
-import C from "../constants";
+﻿import {ADD_DAY, ADD_ERROR, CLEAR_ERROR, REMOVE_DAY, SET_GOAL} from "../constants";
+import {Goal, SkiDay} from "./state";
 
-module ActionTypes {
-    export interface SkiDay {
-        type: typeof C.ADD_DAY | typeof C.REMOVE_DAY
-        payload: S.SkiDay
-    }
+export type SkiDayAction = AddDay | RemoveDay
+interface AddDay {type : typeof ADD_DAY; payload : SkiDay}
+interface RemoveDay {type : typeof REMOVE_DAY; payload : string}
 
-    export interface Goal {
-        type: typeof C.SET_GOAL
-        payload: S.Goal
-    }
+export interface GoalAction {type : typeof SET_GOAL; payload : Goal}
 
-    export type Errors = AddError | ClearError
-    interface AddError {
-        type: typeof C.ADD_ERROR
-        payload: string
-    }
-    interface ClearError {
-        type: typeof C.CLEAR_ERROR
-        payload: number
-    }
-}
-
-export default ActionTypes
+export type ErrorListAction = AddError | ClearError
+interface AddError {type : typeof ADD_ERROR; payload : string}
+interface ClearError {type : typeof CLEAR_ERROR; payload : number}
