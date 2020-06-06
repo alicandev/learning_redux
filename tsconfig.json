@@ -1,9 +1,9 @@
 ﻿{
-  "compileOnSave": false,
-  "buildOnSave": false,
+  "compileOnSave": true,
+  "buildOnSave": true,
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es6",
+    "target": "ES6",
     "jsx": "react",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -11,7 +11,9 @@
     "removeComments": false,
     "sourceMap": false,
     "inlineSourceMap": true,
-    "noEmitHelpers": true
+    "esModuleInterop": true,
+    "noEmitHelpers": true,
+    "importHelpers": true
   },
   "awesomeTypescriptLoaderOptions": {
     "useBabel": true,
