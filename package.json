@@ -6,7 +6,9 @@
   "dependencies": {
     "babel-cli": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
-    "babel-preset-stage-0": "^6.16.0"
+    "babel-preset-stage-0": "^6.16.0",
+    "redux": "^4.0.5",
+    "tslib": "^2.0.0"
   },
   "devDependencies": {
     "babel-preset-stage-0": "^6.16.0",
@@ -20,10 +22,10 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/babel-node ./src/",
-    "challenge-a": "babel-node ./src/challenges/FETCH_RESORT_NAMES.js",
-    "challenge-b": "babel-node ./src/challenges/CANCEL_FETCHING.js",
-    "challenge-c": "babel-node ./src/challenges/CLEAR_SUGGESTIONS.js",
-    "challenge-d": "babel-node ./src/challenges/CHANGE_SUGGESTIONS.js"
+    "test1": "babel-node ./src/tests/FETCH_RESORT_NAMES.js",
+    "test2": "babel-node ./src/tests/CANCEL_FETCHING.js",
+    "test3": "babel-node ./src/tests/CLEAR_SUGGESTIONS.js",
+    "test4": "babel-node ./src/tests/CHANGE_SUGGESTIONS.js"
   },
   "repository": {
     "type": "git",

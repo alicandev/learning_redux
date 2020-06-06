@@ -1,5 +1,6 @@
-﻿import {AllSkiDays, ErrorList, Goal, SkiDay} from "../types/state";
-import {ErrorListAction, GoalAction, SkiDayAction, SuggestionsAction} from "../types/action";
+﻿import {Action, AnyAction, CombinedState, combineReducers, Reducer} from "redux";
+import {AppState, ErrorList, Goal, SkiDay, ResortNames} from "../types/stateTypes";
+import {ErrorListAction, GoalAction, SkiDayAction, ResortNamesAction} from "../types/actionTypes";
 import {
     ADD_DAY,
     ADD_ERROR, CANCEL_FETCHING, CHANGE_SUGGESTIONS,
@@ -9,25 +10,33 @@ import {
     REMOVE_DAY,
     SET_GOAL
 } from "../constants";
+import {
+    AllSkiDaysReducer,
+    ErrorListReducer,
+    FetchingReducer,
+    GoalReducer, ResortNamesReducer, SingleReducer,
+    SkiDayReducer,
+    SuggestionsReducer
+} from "../types/reducerTypes";
 
-export const goal = (state : Goal = { days: 10 }, action : GoalAction) : Goal =>
+export const goal : GoalReducer = (state = { days: 10 }, action) =>
     action.type === SET_GOAL ? action.payload : state
 
-export const skiDay = (state : SkiDay = null, action : SkiDayAction) : SkiDay =>
+export const skiDay : SkiDayReducer = (state = null, action ) =>
     action.type === ADD_DAY ? action.payload : state
 
-export const errorList = (state : ErrorList = [], action : ErrorListAction) : ErrorList => {
+export const errorList : ErrorListReducer = (state = [], action) => {
     switch(action.type) {
-        case ADD_ERROR:
+        case ADD_ERROR: 
             return [ ...state, action.payload ]
-        case CLEAR_ERROR:
+        case CLEAR_ERROR: 
             return state.filter((message, i) => i !== action.payload)
-        default:
+        default: 
             return state
     }
 }
 
-export const allSkiDays = (state : AllSkiDays = [], action : SkiDayAction) : AllSkiDays => {
+export const allSkiDays : AllSkiDaysReducer = (state = [], action) => {
     switch (action.type) {
         case ADD_DAY:
             const dayBookedAlready = state.some(skiDay => skiDay.date === action.payload.date)
@@ -39,20 +48,40 @@ export const allSkiDays = (state : AllSkiDays = [], action : SkiDayAction) : All
     }
 }
 
-export const fetching = (state : boolean, action : SuggestionsAction) : boolean => {
+export const fetching : FetchingReducer = (state = false, action) => {
     switch (action.type) {
-        case FETCH_RESORT_NAMES: return true
-        case CANCEL_FETCHING: return false
-        case CHANGE_SUGGESTIONS: return false
-        default: return state
+        case FETCH_RESORT_NAMES: 
+            return true
+        case CANCEL_FETCHING: 
+            return false
+        case CHANGE_SUGGESTIONS: 
+            return false
+        default: 
+            return state
     }
 }
 
-
-export const suggestions = (state : string[], action : SuggestionsAction) : string[] => {
+export const suggestions : SuggestionsReducer = (state = [], action) => {
     switch (action.type) {
-        case CLEAR_SUGGESTIONS: return []
-        case CHANGE_SUGGESTIONS: return action.payload
-        default: return state
+        case CLEAR_SUGGESTIONS: 
+            return []
+        case CHANGE_SUGGESTIONS: 
+            return action.payload
+        default: 
+            return state
     }
 }
+
+const resortNames : ResortNamesReducer = combineReducers({
+    fetching,
+    suggestions
+})
+
+const singleReducer : SingleReducer = combineReducers({
+    allSkiDays,
+    goal,
+    errorList,
+    resortNames: resortNames
+})
+
+export default singleReducer
