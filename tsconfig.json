@@ -3,7 +3,7 @@
   "buildOnSave": true,
   "compilerOptions": {
     "module": "commonjs",
-    "target": "ES6",
+    "target": "ES5",
     "jsx": "react",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,

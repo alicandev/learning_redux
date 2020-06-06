@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "babel-cli": "^6.16.0",
-    "babel-preset-latest": "^6.16.0",
-    "babel-preset-stage-0": "^6.16.0",
-    "redux": "^4.0.5",
+    "redux": "^3.6.0",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
+    "babel-core": "^6.18.0",
+    "babel-loader": "^6.2.6",
+    "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "json-loader": "^0.5.4",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2",
     "typescript": "^3.9.3",
     "@types/jest": "^25.2.3",
     "@types/node": "^14.0.9",
@@ -21,7 +24,7 @@
     "expect": "^26.0.1"
   },
   "scripts": {
-    "start": "./node_modules/.bin/babel-node ./src/",
+    "start": "./node_modules/.bin/webpack-dev-server",
     "test1": "babel-node ./src/tests/FETCH_RESORT_NAMES.js",
     "test2": "babel-node ./src/tests/CANCEL_FETCHING.js",
     "test3": "babel-node ./src/tests/CLEAR_SUGGESTIONS.js",

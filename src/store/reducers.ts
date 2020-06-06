@@ -65,7 +65,7 @@ export const suggestions : SuggestionsReducer = (state = [], action) => {
     switch (action.type) {
         case CLEAR_SUGGESTIONS: 
             return []
-        case CHANGE_SUGGESTIONS: 
+        case CHANGE_SUGGESTIONS:
             return action.payload
         default: 
             return state
