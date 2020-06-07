@@ -1,4 +1,4 @@
-﻿import {AppState, ErrorList, Goal, SkiDay, ResortNames} from "./stateTypes";
+﻿import {AppState, ErrorList, SkiDay, ResortNames} from "./stateTypes";
 import {ErrorListAction, GoalAction, SkiDayAction, ResortNamesAction} from "./actionTypes";
 import {
     ADD_DAY,
@@ -13,18 +13,11 @@ import {
 import {Action, AnyAction, CombinedState, combineReducers, Reducer} from "redux";
 import {goal} from "../store/reducers";
 
-export type GoalReducer = (state: Goal, action: GoalAction) => Goal;
-
-export type SkiDayReducer = (state: SkiDay, action: SkiDayAction) => SkiDay;
-
-export type ErrorListReducer = (state: ErrorList, action: ErrorListAction) => ErrorList;
-
-export type AllSkiDaysReducer = (state: SkiDay[], action: SkiDayAction) => SkiDay[];
-
-export type FetchingReducer = (state: boolean, action: ResortNamesAction) => boolean;
-
-export type SuggestionsReducer = (state: string[], action: ResortNamesAction) => string[];
-
+export type GoalReducer = (state : number, action : GoalAction) => number;
+export type SkiDayReducer = (state : SkiDay, action : SkiDayAction) => SkiDay;
+export type ErrorListReducer = (state : ErrorList, action : ErrorListAction) => ErrorList;
+export type AllSkiDaysReducer = (state : SkiDay[], action : SkiDayAction) => SkiDay[];
+export type FetchingReducer = (state : boolean, action : ResortNamesAction) => boolean;
+export type SuggestionsReducer = (state : string[], action : ResortNamesAction) => string[];
 export type ResortNamesReducer = Reducer<CombinedState<ResortNames>,ResortNamesAction>;
-
 export type SingleReducer = Reducer<CombinedState<AppState>,AnyAction>;

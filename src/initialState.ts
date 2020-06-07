@@ -21,7 +21,7 @@ const initialState : AppState = {
             backcountry: true
         }
     ],
-    goal: {days: 10},
+    goal: 10,
     errorList: [],
     resortNames: {
         fetching: false,
