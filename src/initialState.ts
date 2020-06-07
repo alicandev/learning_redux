@@ -1,4 +1,4 @@
-﻿import {AppState} from "./types/stateTypes";
+﻿import {AppState} from "./types/states";
 
 const initialState : AppState = {
     allSkiDays: [

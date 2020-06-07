@@ -1,6 +1,6 @@
 import {applyMiddleware, createStore} from 'redux';
 import appReducer from './reducers';
-import {AppState} from "../types/stateTypes";
+import {AppState} from "../types/states";
 
 const emptyState : AppState = {
     allSkiDays: [],

@@ -1,6 +1,12 @@
 ﻿import {Action, AnyAction, CombinedState, combineReducers, Reducer} from "redux";
-import {AppState, ErrorList, SkiDay, ResortNames} from "../types/stateTypes";
-import {ErrorListAction, GoalAction, SkiDayAction, ResortNamesAction} from "../types/actionTypes";
+import {
+    AllSkiDaysReducer,
+    ErrorListReducer,
+    FetchingReducer,
+    GoalReducer, ResortNamesReducer, SingleReducer,
+    SkiDayReducer,
+    SuggestionsReducer
+} from "../types/reducers";
 import {
     ADD_DAY,
     ADD_ERROR, CANCEL_FETCHING, CHANGE_SUGGESTIONS,
@@ -10,19 +16,11 @@ import {
     REMOVE_DAY,
     SET_GOAL
 } from "../constants";
-import {
-    AllSkiDaysReducer,
-    ErrorListReducer,
-    FetchingReducer,
-    GoalReducer, ResortNamesReducer, SingleReducer,
-    SkiDayReducer,
-    SuggestionsReducer
-} from "../types/reducerTypes";
 
 export const goal : GoalReducer = (state = 10, action) =>
     action.type === SET_GOAL ? action.payload : state;
 
-export const skiDay : SkiDayReducer = (state = null, action ) =>
+export const skiDay : SkiDayReducer = (state = null, action) =>
     action.type === ADD_DAY ? action.payload : state;
 
 export const errorList : ErrorListReducer = (state = [], action) => {

@@ -1,42 +1,27 @@
-﻿import {AppState} from "./types/stateTypes";
-import storeFactory from './store/index';
-import {ADD_DAY} from "./constants";
+﻿import expect from 'expect';
+import storeFactory from './store';
+import {
+    addError,
+    clearError,
+    changeSuggestions,
+    clearSuggestions
+} from './actions';
 
-const initialState : AppState = localStorage['redux-store'] ? JSON.parse(localStorage['redux-store']) : {}
+const store = storeFactory();
 
-const saveState = () => localStorage['redux-store'] = JSON.stringify(store.getState());
+store.dispatch(addError("something went wrong"));
+expect(store.getState().errorList).toEqual(["something went wrong"]);
+console.log("addError() Action Creator Works!!!");
 
-const store = storeFactory(initialState);
+store.dispatch(clearError(0));
+expect(store.getState().errorList).toEqual([]);
+console.log("clearError() Action Creator Works!!!");
 
-store.subscribe(saveState);
+store.dispatch(changeSuggestions(['One', 'Two', 'Three']));
+expect(store.getState().resortNames.suggestions).toEqual(['One', 'Two', 'Three']);
+console.log("changeSuggestions() Action Creator Works!!!");
 
-store.dispatch({
-    type: ADD_DAY,
-    payload: {
-        resort: "Mt Shashta",
-        date: "2016/12/10",
-        powder: false,
-        backcountry: true
-    }
-});
-
-store.dispatch({
-    type: ADD_DAY,
-    payload: {
-        resort: "Squaw Valley",
-        date: "2016/3/26",
-        powder: false,
-        backcountry: false
-    }
-});
-
-store.dispatch({
-    type: ADD_DAY,
-    payload: {
-        resort: "Mt Charlemagne",
-        date: "2010/12/10",
-        powder: true,
-        backcountry: true
-    }
-});
+store.dispatch(clearSuggestions());
+expect(store.getState().resortNames.suggestions).toEqual([]);
+console.log("clearSuggestions() Action Creator Works!!!");
 

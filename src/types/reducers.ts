@@ -1,5 +1,5 @@
-﻿import {AppState, ErrorList, SkiDay, ResortNames} from "./stateTypes";
-import {ErrorListAction, GoalAction, SkiDayAction, ResortNamesAction} from "./actionTypes";
+﻿import {AppState, ErrorList, SkiDay, ResortNames} from "../types/states";
+import {ErrorListAction, SetGoalAction, SkiDayAction, ResortNamesAction} from "../types/actions";
 import {
     ADD_DAY,
     ADD_ERROR,
@@ -13,7 +13,7 @@ import {
 import {Action, AnyAction, CombinedState, combineReducers, Reducer} from "redux";
 import {goal} from "../store/reducers";
 
-export type GoalReducer = (state : number, action : GoalAction) => number;
+export type GoalReducer = (state : number, action : SetGoalAction) => number;
 export type SkiDayReducer = (state : SkiDay, action : SkiDayAction) => SkiDay;
 export type ErrorListReducer = (state : ErrorList, action : ErrorListAction) => ErrorList;
 export type AllSkiDaysReducer = (state : SkiDay[], action : SkiDayAction) => SkiDay[];
