@@ -21,12 +21,12 @@ const initialState : AppState = {
             backcountry: true
         }
     ],
-    goal: { days: 10 },
+    goal: {days: 10},
     errorList: [],
     resortNames: {
         fetching: false,
-        suggestions: [ "Squaw Valley", "Snowbird", "Stowe", "Steamboat" ]
+        suggestions: ["Squaw Valley", "Snowbird", "Stowe", "Steamboat"]
     }
 }
 
-export default initialState
+export default initialState;

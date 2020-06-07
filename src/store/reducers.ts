@@ -19,69 +19,69 @@ import {
     SuggestionsReducer
 } from "../types/reducerTypes";
 
-export const goal : GoalReducer = (state = { days: 10 }, action) =>
-    action.type === SET_GOAL ? action.payload : state
+export const goal : GoalReducer = (state = {days: 10}, action) =>
+    action.type === SET_GOAL ? action.payload : state;
 
 export const skiDay : SkiDayReducer = (state = null, action ) =>
-    action.type === ADD_DAY ? action.payload : state
+    action.type === ADD_DAY ? action.payload : state;
 
 export const errorList : ErrorListReducer = (state = [], action) => {
     switch(action.type) {
         case ADD_ERROR: 
-            return [ ...state, action.payload ]
+            return [ ...state, action.payload ];
         case CLEAR_ERROR: 
-            return state.filter((message, i) => i !== action.payload)
+            return state.filter((message, i) => i !== action.payload);
         default: 
-            return state
+            return state;
     }
 }
 
 export const allSkiDays : AllSkiDaysReducer = (state = [], action) => {
     switch (action.type) {
         case ADD_DAY:
-            const dayBookedAlready = state.some(skiDay => skiDay.date === action.payload.date)
-            return dayBookedAlready ? state : [ ...state, skiDay(null, action) ]
+            const dayBookedAlready = state.some(skiDay => skiDay.date === action.payload.date);
+            return dayBookedAlready ? state : [ ...state, skiDay(null, action) ];
         case REMOVE_DAY:
-            return state.filter(skiDay => skiDay.date !== action.payload)
+            return state.filter(skiDay => skiDay.date !== action.payload);
         default:
-            return state
+            return state;
     }
 }
 
 export const fetching : FetchingReducer = (state = false, action) => {
     switch (action.type) {
         case FETCH_RESORT_NAMES: 
-            return true
+            return true;
         case CANCEL_FETCHING: 
-            return false
+            return false;
         case CHANGE_SUGGESTIONS: 
-            return false
+            return false;
         default: 
-            return state
+            return state;
     }
 }
 
 export const suggestions : SuggestionsReducer = (state = [], action) => {
     switch (action.type) {
         case CLEAR_SUGGESTIONS: 
-            return []
+            return [];
         case CHANGE_SUGGESTIONS:
-            return action.payload
+            return action.payload;
         default: 
-            return state
+            return state;
     }
 }
 
 const resortNames : ResortNamesReducer = combineReducers({
     fetching,
     suggestions
-})
+});
 
 const singleReducer : SingleReducer = combineReducers({
     allSkiDays,
     goal,
     errorList,
     resortNames: resortNames
-})
+});
 
-export default singleReducer
+export default singleReducer;

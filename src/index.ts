@@ -1,20 +1,22 @@
-﻿import {createStore} from 'redux'
+﻿import {AnyAction, CombinedState, createStore, Store} from 'redux'
 import appReducer from './store/reducers'
-import initialState from './initialState'
-import {ADD_DAY} from "./constants";
+import {ADD_DAY, SET_GOAL} from "./constants";
+import {AppState} from "./types/stateTypes";
 
-const store = createStore(appReducer, initialState);
+const store = createStore(appReducer);
 
-console.log('initial state', store.getState())
+const unsubscribeGoalLogger = store.subscribe(() => {
+    console.log(store.getState().goal);
+});
 
-store.dispatch({
-    type: ADD_DAY,
-    payload: {
-        resort: "Ananke",
-        date: "2013/12/7",
-        powder: false,
-        backcountry: true
-    }
-})
+setInterval(
+    () => store.dispatch({ 
+        type: SET_GOAL, 
+        payload: Math.floor(Math.random() * 100) 
+    }), 250
+);
 
-console.log('new state', store.getState())
+setTimeout(
+    () => unsubscribeGoalLogger(),
+    3000
+)
