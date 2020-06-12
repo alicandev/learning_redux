@@ -8,6 +8,9 @@
     AddErrorAction,
     ClearSuggestionsAction, ChangeSuggestionsAction, ClearErrorAction
 } from "./actions";
+import {Action, ActionCreator, Dispatch} from "redux";
+import {ThunkAction} from "redux-thunk";
+import {AppState} from "./states";
 
 export type AddDayActionCreator = (
     resort : string,
@@ -27,5 +30,4 @@ export type ChangeSuggestionsActionCreator = (suggestions : string[]) => ChangeS
 export type AddErrorActionCreator = (error : string) => AddErrorAction;
 
 export type ClearErrorActionCreator = (i : number) => ClearErrorAction;
-
 
