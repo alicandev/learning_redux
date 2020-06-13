@@ -15,10 +15,11 @@ import {
     RemoveDayActionCreator,
     SetGoalActionCreator
 } from "./types/actionCreators";
+import {AppState, ResortNames} from "./types/states";
 import {ClearErrorAction, ClearSuggestionsAction, ResortNamesAction} from "./types/actions";
 import {Action, ActionCreator, AnyAction, Dispatch} from "redux";
 import {ThunkAction, ThunkDispatch, ThunkResult} from "redux-thunk";
-import {AppState, ResortNames} from "./types/states";
+import fetch from "isomorphic-fetch";
 
 export const addDay : AddDayActionCreator = (resort, date, powder = false, backcountry = false) => ({
     type: ADD_DAY, 
@@ -53,10 +54,9 @@ export const clearError : ClearErrorActionCreator = index => ({
     payload: index
 });
 
-export const randomGoals : ActionCreator<ThunkAction<ResortNamesAction, ResortNames, void>> = () : ThunkResult<void> => 
-    
+export const randomGoals : ActionCreator<ThunkAction<ResortNamesAction, ResortNames, void>> = () => (
     (dispatch : ThunkDispatch<ResortNamesAction>, getState: () => AppState) => {
-        
+
         if (!getState().resortNames.fetching) {
 
             dispatch({
@@ -70,4 +70,21 @@ export const randomGoals : ActionCreator<ThunkAction<ResortNamesAction, ResortNa
             }, 1500);
         }
     }
+);
+
+export const suggestResortNames : ActionCreator<ThunkAction<ResortNamesAction, ResortNames, void>> = (value : string) => (
+    (dispatch : ThunkDispatch<ResortNamesAction>) => {
+        dispatch({type: FETCH_RESORT_NAMES});
+        
+        fetch("http://localhost:3333/resorts/" + value)
+            .then(response => response.json())
+            .then(suggestions => { 
+                dispatch({type: CHANGE_SUGGESTIONS, payload: suggestions});
+            })
+            .catch(error => {
+                dispatch(addError(error.message));
+                dispatch({type: CANCEL_FETCHING});
+            });
+    }
+);
     
